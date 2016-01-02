@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<img src="http://localhost:3000/public/uploads/a6c0c9f1fa98bb8fc5f20cf8f4d09cf5">
+<h1>get start</h1>
+<form action="/getpp/1/3" method="get">
+    <input type="text" name="name">
+    <input type="text" name="pwd">
+
+    <input type="submit" name="提交">
+</form>
+<h1>get end</h1>
+<br/>
+<br/>
+<h1>post start</h1>
+<form action="/postpp" method="post">
+    <input type="text" name="name">
+    <input type="text" name="pwd">
+    <input type="submit" name="提交">
+</form>
+<h1>post end</h1>
+
+<br/>
+<br/>
+
+<h1>file update start</h1>
+<form id="formddata" action="/fileUpdate" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" id="name">
+    <input type="text" name="pwd">
+    <input type="file" name="file" multiple id="file">
+    <input type="file" name="file2" multiple id="avatar2">
+    <input id="submit" type="submit" value="submit">
+</form>
+<h1>file update end</h1>
+
+
+
+</body>
+<script type="text/javascript">
+//    $(document).ready(function(){
+//        $("#submit").click(function(){
+//            var formData = new FormData();
+//            formData.append('file', $('#file')[0].files[0]);
+//            formData.append('name',$('#name').val());
+//            console.log($('#file')[0].files[0]);
+//            $.ajax({
+//                url: '/fileUpdate',
+//                type: 'POST',
+//                cache: false,
+//                data: formData,
+//                processData: false,
+//                contentType: false
+//            }).done(function(res) {
+//                alert(res);
+//            }).fail(function(res) {
+//                alert(res);
+//            });
+//        });
+//    });
+</script>
+</html>
