@@ -8,6 +8,8 @@ module.exports.admin = function *admin(){
 
 module.exports.adminLogin = function *admin(){
     var account = yield userService.queryAdmin(this,{uid:1});
-    console.log(account);
+    account.forEach(function(doc){//游标遍历
+        console.log(doc);
+    })
     yield  this.render('./views/adminChat');
 }
