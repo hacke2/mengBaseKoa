@@ -2,11 +2,27 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>koa 首页</title>
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" type="text/css">
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
 </head>
 <body>
-<img src="http://localhost:3000/public/uploads/a6c0c9f1fa98bb8fc5f20cf8f4d09cf5">
+<div class="container">
+<img src="/public/uploads/929edcc4a2dc6fba143aecb8f1e43dd9" class="img-responsive">
+
+    <div class="text-center">
+        <form id="mongodbForm" action="/toMongoDB" method="get">
+        <button id="mongodb" class="btn btn-default">mongodb test</button>
+        </form>
+    </div>
+
+    <div class="text-center">
+        <form id="chatForm" action="/io" method="get">
+            <button id="chartsubmit" class="btn btn-default">chat with GM</button>
+        </form>
+    </div>
+
 <h1>get start</h1>
 <form action="/getpp/1/3" method="get">
     <input type="text" name="name">
@@ -38,11 +54,18 @@
 </form>
 <h1>file update end</h1>
 
-
+</div>
 
 </body>
 <script type="text/javascript">
-//    $(document).ready(function(){
+    $(document).ready(function(){
+
+        $('#mongodb').click(function(){
+          $('#mongodbForm').submit();
+        });
+        $('#chartsubmit').click(function(){
+            $('#chatForm').submit();
+        });
 //        $("#submit").click(function(){
 //            var formData = new FormData();
 //            formData.append('file', $('#file')[0].files[0]);
@@ -61,6 +84,6 @@
 //                alert(res);
 //            });
 //        });
-//    });
+    });
 </script>
 </html>

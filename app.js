@@ -6,45 +6,36 @@ var koa = require('koa');
 var mongo = require('koa-mongo');//mongo 数据库
 var views = require('koa-views');//页面渲染
 var bodyParser = require('koa-bodyparser');//参数解析
-var route = require('koa-route');//路由设置
+route = require('koa-route');//路由设置
 const serve = require('koa-serve');
 //导入第三房组件 end
-//导入自定义文件 start
-var uploadAction = require('./src/action/UploadAction/UploadAction');
-//导入自定义文件 end
+
 
 //程序开始
-var app = koa();
+app = koa();
 app.use(mongo());
 app.use(views());
 app.use(bodyParser());
 app.use(serve('public'));
 
 //错误处理
-
 app.use(function *(next){
     yield  next;
     if (404 != this.status) return;
     this.status = 404;
     yield  this.render('./views/error')
 })
-
 //mark index
 app.use(route.get('/',function *(){
     yield  this.render('./views/index')
 }))
-
-
-//外面可能还有一层路由分发
-
-//路由
-app.use(route.get('/getpp/:name/:pwd',uploadAction.paserGet));
-
-app.use(route.post('/postpp',uploadAction.paserPost));
-
-app.use(route.post('/fileUpdate', uploadAction.uploadFile));
-
-
+//mark index
+//路由分发 start （类似java里面的struts2配置多个xml文件，这里也是配置后导入）
+require('./mongoHandleApp');//数据库处理
+require('./io');//聊天处理
+require('./getAndPostWithUpdatePicture');//get post 上传图片
+require('./admin');//后台管理
+//路由分发 end
 if(!module.parent) {
-    app.listen(3000);
+    app.server.listen(3000);
 }
