@@ -8,6 +8,9 @@ var views = require('koa-views');//页面渲染
 var bodyParser = require('koa-bodyparser');//参数解析
 route = require('koa-route');//路由设置
 const serve = require('koa-serve');
+var session = require('koa-session');
+
+
 //导入第三房组件 end
 
 
@@ -17,6 +20,22 @@ app.use(mongo());
 app.use(views());
 app.use(bodyParser());
 app.use(serve('public'));
+
+//使用session必须使用app.keys,暂时不知道为神马
+app.keys = ['some secret hurr'];
+app.use(session(app));
+
+app.use(function *(next){
+    console.log(this.cookies.get('name'));
+    yield  next;
+    console.log(this.session.isNew);
+    console.log(this.sessionOptions);
+    console.log(this.session.isLogin);
+    this.session.isLogin = true
+    console.log(this.session.isLogin);
+    this.cookies.set('name', 'tobi', { signed: false });
+})
+
 
 //错误处理
 app.use(function *(next){
