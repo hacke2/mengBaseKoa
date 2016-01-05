@@ -33,7 +33,7 @@ app.use(function *(next){
     console.log(this.session.isLogin);
     this.session.isLogin = true
     console.log(this.session.isLogin);
-    this.cookies.set('name', 'tobi', { signed: false });
+    this.cookies.set('name', 'tobi', { signed: true });
 })
 
 
